@@ -23,6 +23,10 @@ app.use(bodyParser.json());
  */
 const db = require("./models");
 const Category = db.category;
+const Product = db.product;
+
+//Setting the One to Many relationship between Category and Product
+Category.hasMany(Product); // This will create a foreign key column( categoryId) in Pr
 
 console.log(Category);
 db.sequelize.sync({ force: true }).then(() => {
@@ -45,7 +49,7 @@ function init() {
     Category.bulkCreate(categories).then(() => {
         console.log("Categories table is initialized");
     }).catch(err => {
-        console.log("Error while initializing ategories table");
+        console.log("Error while initializing categories table");
     })
 
 }

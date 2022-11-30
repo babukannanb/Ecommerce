@@ -39,3 +39,16 @@
  db.product = require('./product.model.js')(sequelize, Sequelize);
  
  module.exports = db;
+
+ /**
+  * db={
+  * Sequelize;
+  * sequelize;
+  * category:function(){
+  * 
+  * }
+  * product:function(){
+  * 
+  * }
+  * }
+  */

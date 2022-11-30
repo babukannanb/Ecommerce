@@ -7,7 +7,10 @@
  const { product } = require("../models");
  const db = require("../models");
  const Product = db.product;
- 
+ const Category = db.category;
+const Op = db.Sequelize.Op;
+
+
  /**
   * Create and save a new Product
   */
@@ -29,7 +32,8 @@
      const product = {
          name: req.body.name,
          description: req.body.description,
-         cost : req.body.cost
+         cost : req.body.cost,
+         categoryId: req.body.categoryId
      };
  
      /**
@@ -53,6 +57,8 @@
  
      //Supporting the query param
      let productName = req.query.name;
+     let minCost = req.query.minCost;
+    let maxCost = req.query.maxCost;
      let promise ;
      if(productName){
          promise = Product.findAll({
@@ -60,7 +66,34 @@
                  name : productName
              }
          });
-     }else{
+     }
+     else if (minCost && maxCost) {
+
+        promise = Product.findAll({
+            where: {
+                cost: {
+                    [Op.gte]: minCost,
+                    [Op.lte]: maxCost
+                }
+            }
+        });
+    }else if(minCost){
+        promise = Product.findAll({
+            where: {
+                cost: {
+                    [Op.gte]: minCost
+                }
+            }
+        });
+    }else if(maxCost){
+        promise = Product.findAll({
+            where: {
+                cost: {
+                    [Op.lte]: maxCost
+                }
+            }
+        });
+    }else{
          promise =  Product.findAll();
      }
      promise.then(products => {
@@ -109,7 +142,8 @@
       */
      const product = {
          name: req.body.name,
-         description: req.body.description
+         description: req.body.description,
+         cost : req.body.cost
      };
      const productId = req.params.id;
  

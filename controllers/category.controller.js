@@ -16,13 +16,7 @@
       * Validation of the request body
       */
  
-     if (!req.body.name) {
-         res.status(400).send({
-             message: "Name of the category can't be empty !"
-         })
-         return;
-     }
- 
+  
      /**
       * Creation of the Category object to be stored in the DB
       */
@@ -101,12 +95,7 @@
       * Validation of the request body
       */
  
-     if (!req.body.name) {
-         res.status(400).send({
-             message: "Name of the category can't be empty !"
-         })
-         return;
-     }
+ 
  
      /**
       * Creation of the Category object to be stored in the DB
