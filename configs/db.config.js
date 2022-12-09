@@ -13,7 +13,7 @@ module.exports = {
     }
 },
     production: {
-        HOST: sql6.freemysqlhosting.net,
+        HOST: "sql6.freemysqlhosting.net",
         USER: "sql6583614",
         PASSWORD: " 89qBgNzVS4",
         DB: " sql6583614",
