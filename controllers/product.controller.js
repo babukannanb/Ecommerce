@@ -187,4 +187,27 @@ const Op = db.Sequelize.Op;
              message: "Some Internal error while deleting the product based on the id"
          })
      })
+
+
  }
+
+
+ /**
+     * Get the list of all the products under a category
+     */
+exports.getProductsUnderCategory = (req, res) => {
+    const categoryId = parseInt(req.params.categoryId);
+
+    Product.findAll({
+        where: {
+            categoryId: categoryId
+        }
+    }).then(products => {
+        res.status(200).send(products);
+    }).catch(err => {
+        res.status(500).send({
+            message: "Some Internal error while fetching  products based on the category id "
+        })
+    })
+
+}
